@@ -1,14 +1,15 @@
 ---
+import Icon from "astro-icon"
 import Layout from '../layouts/Layout.astro';
-import {links} from "../data/settings"
+import {links, amazonLink} from "../data/settings"
 ---
 
 <Layout title="A Black Kat's Voice">
 	<main>
 		<div class="theme-block-31">
 			<div id="slideshow">
-				<a href="#" class="slide" title="bg-image-0">
-					<span class="animate down" title="bg-image-0" style="background-image: url('/images/bg-image-2.jpg'); animation-duration: 7000ms;"></span>
+				<a class="slide" title="bg-image-0">
+					<span class="animate down" title="bg-image-0" style="background-image: url('/images/bg-image-3.jpg'); animation-duration: 7000ms;"></span>
 				</a>
 			</div>
 			<div id="bg-slider">
@@ -18,11 +19,11 @@ import {links} from "../data/settings"
 
 				<div class="header-text">
 					<span>
-						<h1>Welcome to the Official Website for the A Black Kat's Voice Podcast.</h1>
+						<h1>Welcome to A Black Kat's Voice</h1>
 					</span>
 				</div>
 				<div class="jlf-first-page-logo-block">
-					<img src="/images/logo.png" alt="A Black Kat's Voice">
+					<img src="/images/logo-invert.png" alt="A Black Kat's Voice">
 				</div>
 				<div class="d-flex flex-wrap justify-content-center mx-11 slider-block-1">
 					{
@@ -32,12 +33,12 @@ import {links} from "../data/settings"
 								<div class="jadore-areas-divs">
 									<div class="jadore-area-name-desc-div">
 										<h2 class="jadore-area-name-div">
-											{item?.title ?? "Title"}
+											{item?.icon ? <Icon name={item.icon} height={item.height}/> : "Title"}
 										</h2>
 
 									</div>
 									<div>
-										<p class="jadore-areas-adv">{item?.description ?? "Description"}</p>
+										<p class="jadore-areas-adv">{item?.description ?? "Description"}<Icon name="arrow-right-fill" height="1rem" style="margin-left: .25rem; transform: translateY(15%);"/></p>
 									</div>
 								</div>
 							</a>
@@ -49,28 +50,37 @@ import {links} from "../data/settings"
 					<div class="white-page-banner position-relative">
 						<img class="flower-1" src="/images/book.jpg" alt="">
 						<div class="white-page-banner-content jadore-areas-div" style="padding: 10px !important; margin: auto;">
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, quam?</p>
+							<p>Support the podcast by purchasing</p>
+							<p >A Black Kat's Voice: Volume 1: Broken Heart, Happy Soul</p>
 							<div class="position-relative mt-4 white-page-banner-logo">
 								<div class="logo-section">
-									<a href="">
-										<img src="/images/simply_jadore_logo.svg" alt="">
+									<a>
+										<img src="/images/kat-davis-signature.svg" alt="">
 									</a>
 								</div>
-								<a href="">
-									<div class="button-section-mobile" style="display: none;">
+								<a href={amazonLink}>
+									<div class="jadore_area_subtitle_mobile button-section-mobile" style="display: none;">
 										<div class="jadore-areas-mobile-adv button-border-mobile">SHOP NOW</div>
 									</div>
 								</a>
 								<div class="button-section">
 									<div class="button-border">
-										<a href="">SHOP NOW</a>
+										<a href={amazonLink}>SHOP NOW</a>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div style="height: 40px;"></div>
+				<div class="col-lg-11 mx-auto">
+					<div class="main-footer">
+						<div class="text-center mt-3">
+							<ul class="home-footer-links">
+								<li>&copy; 2023 A Black Kat's Voice </li>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</main>
@@ -124,6 +134,10 @@ a {
     animation-fill-mode: forwards;
     -webkit-animation-timing-function: linear;
     animation-timing-function: linear;
+
+		/* -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite; */
 }
 
 #slideshow span.animate.in {
@@ -149,6 +163,15 @@ a {
 		position: relative !important;
 	}
 
+	@media (max-width: 780px) {
+		.main-bg-slider {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+		gap: 30px 0;
+}
+	}
+
 	.main-bg-slider {
 		min-height: calc(100vh - 2px);
 	}
@@ -165,6 +188,12 @@ a {
     min-height: 30px;
     max-height: max-content;
 }
+
+@media (max-width: 780px) {
+	.main-bg-slider .header-text {
+    margin-bottom: 0;
+}
+	}
 
 /* span */
 
@@ -183,6 +212,13 @@ a {
     justify-content: center;
     margin-bottom: 20px;
 }
+
+@media (max-width: 780px) {
+	.jlf-first-page-logo-block {
+    margin-bottom: 0px;
+    padding: 5px;
+}
+	}
 
 /* img */
 .jlf-first-page-logo-block img {
@@ -211,6 +247,14 @@ a {
     align-items: center;
 }
 
+
+
+@media (max-width: 780px) {
+	.main-bg-slider .slider-block-1 {
+    min-height: fit-content;
+}
+}
+
 /* ----------------- */
 /* Card              */
 /* ----------------- */
@@ -219,7 +263,7 @@ a {
 /* a */
 
 
-/* div class="jadore-area-item" */
+/* div class="jadore-areas-divs" */
 .jadore-areas-divs {
     width: 350px;
     min-height: 500px;
@@ -229,7 +273,7 @@ a {
     outline-offset: -7px;
     margin: 10px 20px;
     padding: 25px 20px;
-    color: #383838;
+    color: #000;
     max-height: max-content;
 }
 
@@ -251,10 +295,31 @@ a {
     justify-content: center;
 }
 
+@media (max-width: 780px) {
+	.jadore-areas-divs {
+    width: 230px;
+    min-height: 250px;
+}
+}
+
+@media (max-width: 600px) {
+	.jadore-areas-divs {
+    margin: 7px;
+    width: 192px;
+    min-height: 150px;
+}
+}
+
 /* div class="jadore-area-name-desc-dev" */
 .jadore-area-name-desc-div {
     padding-top: 40px;
     text-align: center;
+}
+
+@media (max-width: 780px) {
+	.jadore-area-name-desc-div {
+    padding-top: 15px;
+}
 }
 
 /* h2 class="jadore-area-name-div" */
@@ -265,15 +330,27 @@ a {
     line-height: 1.5;
 }
 
+@media (max-width: 600px) {
+	.jadore-area-name-div {
+    font-size: 22px;
+}
+}
+
 /* div */
 
 /* p class="jadore-areas-adv" */
 .jadore-areas-adv {
     margin: 10px 5px 0;
-    font-size: 13px;
+    font-size: 16px;
     line-height: 1.5;
     padding-top: 55px;
     text-align: center;
+}
+
+@media (max-width: 780px) {
+	p.jadore-areas-adv {
+    padding-top: 25px;
+}
 }
 
 /* div class="col-lg-11 mx-auto" */
@@ -309,6 +386,20 @@ a {
     margin: 0 auto !important;
 }
 
+@media (max-width: 715px) {
+	.white-page-banner {
+    height: 175px;
+}
+}
+
+@media (max-width: 500px) {
+	.white-page-banner {
+    height: 165px;
+    padding: 0px !important;
+    margin: auto;
+	}
+}
+
 /* img class="flower-1" */
 .white-page-banner .flower-1 {
     height: 150px;
@@ -316,6 +407,36 @@ a {
     position: absolute;
     left: 80px;
 		bottom: 30px;
+}
+
+@media (max-width: 900px) {
+	.white-page-banner .flower-1 {
+    object-fit: contain;
+    width: 150px;
+    left: 30px;
+}
+}
+
+@media (max-width: 715px) {
+	.white-page-banner .flower-1 {
+    height: 77%;
+    min-height: unset;
+    object-fit: contain;
+    width: 150px;
+    left: 35px;
+    top: 35px;
+}
+}
+
+@media (max-width: 500px) {
+	.white-page-banner .flower-1 {
+    height: 60%;
+    min-height: unset;
+    object-fit: contain;
+    left: -30px;
+    top: 38px;
+    z-index: 999;
+}
 }
 
 /* div class="white-page-banner-content jadore-areas-div" */
@@ -335,6 +456,7 @@ a {
     padding: 25px 20px;
     color: #383838;
     max-height: max-content;
+		font-weight: 700;
 }
 
 /* p */
@@ -347,10 +469,28 @@ p {
     font-size: 16px !important;
 }
 
+@media (max-width: 715px) {
+	.white-page-banner p {
+    font-size: 12px!important;
+}
+}
+
+/* @media (max-width: 500px) {
+	.white-page-banner p {
+    font-size: 14px !important;
+}
+} */
+
 /* div class="position-relative mt-4 white-page-banner-logo" */
 .white-page-banner-logo {
     margin-top: 0.7rem !important;
     margin: auto;
+}
+
+@media (max-width: 500px) {
+	.white-page-banner-logo {
+    margin-top: 0.2rem !important;
+}
 }
 
 /* div class="logo-section" */
@@ -368,18 +508,50 @@ p {
     object-fit: contain !important;
 }
 
-/* a */
+@media (max-width: 900px) {
+	.white-page-banner-content .logo-section img {
+    height: 70px;
+    width: 50%;
+}
+}
 
-/* div class="button-section-mobile" */
+@media (max-width: 715px) {
+	.white-page-banner-content .logo-section img {
+    width: 70%;
+}
+}
+
+@media (max-width: 500px) {
+	.white-page-banner-content .logo-section img {
+    height: 50px;
+    /* width: 80% !important; */
+    margin-top: 5px;
+	}
+}
+
+
+/* div class="jadore_area_subtitle_mobile button-section-mobile" */
 .button-section-mobile {
     width: 100px;
     margin: 0 auto;
     height: 29px;
-    background-color: #ffffffa6;
+    background-color: #fff;
     padding: 5px;
     border-radius: 1px;
     border: 1px solid #979797;
     box-shadow: 0px 0px 10px #a5a5a5;
+}
+
+@media (max-width: 715px) {
+	.button-section-mobile {
+    display: block !important;
+}
+}
+
+@media (max-width: 600px) {
+	.jadore_area_subtitle_mobile {
+    display: block !important;
+}
 }
 
 /* div class="jadore-areas-mobile-adv button-border-mobile" */
@@ -417,6 +589,20 @@ p {
     box-shadow: 0px 0px 10px #a5a5a5;
 }
 
+@media (max-width: 900px) {
+	.white-page-banner-content .button-section {
+    right: 0;
+}
+}
+
+@media (max-width: 715px) {
+	.white-page-banner-content .button-section {
+    display: none;
+    position: static;
+    margin-top: 15px;
+}
+}
+
 /* div class="button-border" */
 .button-border {
     border: 1px solid #ccc;
@@ -431,6 +617,40 @@ p {
     color: black;
     font-size: 17px;
 }
+
+
+
+@media (max-width: 500px) {
+	.white-page-banner-content .button-section a {
+    font-size: 15px;
+}
+}
+
+/* div class="col-lg-11 mx-auto" */
+
+/* div class="main-footer" */
+
+/* div class="text-center mt-3" */
+.mt-3 {
+    margin-top: 1rem !important;
+}
+.text-center {
+    text-align: center !important;
+}
+
+/* ul class="home-footer-links" */
+.home-footer-links {
+    list-style: none;
+    margin-bottom: 0px;
+    padding-bottom: 20px;
+}
+
+/* li */
+.home-footer-links li {
+    display: inline-block;
+		color: #fff;
+}
+
 /* ----------------- */
 /* Animations        */
 /* ----------------- */
