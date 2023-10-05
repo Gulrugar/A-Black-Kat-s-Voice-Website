@@ -37,7 +37,7 @@ export const links = [
   {
     title: "Facebook",
     icon: "logos:facebook",
-    height: "34px",
+    height: "38px",
     description: "Follow",
     link: "https://www.facebook.com/ablackkatsvoice",
   },

@@ -1,0 +1,31 @@
+---
+import {amazonLink} from "../data/settings"
+---
+<a href={amazonLink} class="shadcn-ui-button" target="_blank">Shop Amazon</a>
+
+<style>
+  .shadcn-ui-button {
+    --primary: 228.7 20.3% 22.9%;
+    --primary-foreground: 210 40% 98%;
+    display: inline-flex;
+    height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: calc(.5rem - 2px);
+    background-color: hsl(var(--primary));
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    color: hsl(var(--primary-foreground));
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    text-decoration: none;
+  }
+
+  .shadcn-ui-button:hover {
+    background-color: hsl(var(--primary) / 0.9);
+  }
+</style>

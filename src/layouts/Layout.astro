@@ -22,6 +22,51 @@ const { title } = Astro.props;
 		<slot />
 	</body>
 </html>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
+    integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+<script>
+	declare var gsap: any;
+	const slideShowEl = document.getElementById('slideshow') as HTMLElement;
+	const bgSliderEl = document.getElementById('bg-slider') as HTMLElement;
+	const slide0 = document.querySelector('[title="bg-image-0"]') as HTMLElement;
+	const slide1 = document.querySelector('[title="bg-image-1"]') as HTMLElement;
+
+	async function animateSlide0() {
+		await new Promise((resolve) => setTimeout(resolve, 3000));
+		slide1.style.opacity = "1"
+		slideShowEl.prepend(slide1);
+		gsap.to(slide0, {
+			opacity: 0,
+			duration: 1,
+			ease: "ease",
+			onComplete: () => {
+				bgSliderEl.append(slide0);
+				animateSlide1()
+			}
+		})
+	}
+
+	async function animateSlide1() {
+		await new Promise((resolve) => setTimeout(resolve, 3000));
+		slide0.style.opacity = "1"
+		slideShowEl.prepend(slide0);
+		gsap.to(slide1, {
+			opacity: 0,
+			duration: 1,
+			ease: "ease",
+			onComplete: () => {
+				bgSliderEl.append(slide1);
+				animateSlide0()
+			}
+		})
+	}
+
+	animateSlide0()
+</script>
 <style is:global>
 	@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
 	html {

@@ -2,6 +2,9 @@
 import Icon from "astro-icon"
 import Layout from '../layouts/Layout.astro';
 import {links, amazonLink} from "../data/settings"
+import Button from "../components/Button.astro";
+
+const amazonOnClick = `window.open('${amazonLink}', '_blank')`
 ---
 
 <Layout title="A Black Kat's Voice">
@@ -9,17 +12,20 @@ import {links, amazonLink} from "../data/settings"
 		<div class="theme-block-31">
 			<div id="slideshow">
 				<a class="slide" title="bg-image-0">
-					<span class="animate down" title="bg-image-0" style="background-image: url('/images/bg-image-3.jpg'); animation-duration: 7000ms;"></span>
+					<span class="animate up" style="background-image: url('/images/bg-image-0.jpg'); animation-duration: 7000ms;"></span>
 				</a>
 			</div>
 			<div id="bg-slider">
-				<span class="animate in" title="bg-image-1" style="background-image: url('/images/bg-image-1.jpg'); animation-duration: 7000ms;"></span>
+				<a class="slide" title="bg-image-1">
+					<span class="animate in"  style="background-image: url('/images/bg-image-1.jpg'); animation-duration: 7000ms;"></span>
+				</a>
+				
 			</div>
 			<div class="position-relative main-bg-slider" style="background-color: rgba(0, 0, 0, .2);">
 
 				<div class="header-text">
 					<span>
-						<h1>Welcome to A Black Kat's Voice</h1>
+						<h1>Welcome to A Black Kat's Voice!</h1>
 					</span>
 				</div>
 				<div class="jlf-first-page-logo-block">
@@ -46,27 +52,24 @@ import {links, amazonLink} from "../data/settings"
 						))
 					}
 				</div>
+				
 				<div class="col-lg-11 mx-auto">
 					<div class="white-page-banner position-relative">
-						<img class="flower-1" src="/images/book.jpg" alt="">
+						<img class="flower-1" src="/images/book.jpg" onclick={amazonOnClick} alt="" style="cursor: pointer;"  title="Shop Amazon">
 						<div class="white-page-banner-content jadore-areas-div" style="padding: 10px !important; margin: auto;">
 							<p>Support the podcast by purchasing</p>
 							<p >A Black Kat's Voice: Volume 1: Broken Heart, Happy Soul</p>
 							<div class="position-relative mt-4 white-page-banner-logo">
 								<div class="logo-section">
 									<a>
-										<img src="/images/kat-davis-signature.svg" alt="">
+										<img src="/images/kat-davis-signature.svg" alt="" onclick={amazonOnClick} style="cursor: pointer;" title="Shop Amazon">
 									</a>
 								</div>
-								<a href={amazonLink}>
-									<div class="jadore_area_subtitle_mobile button-section-mobile" style="display: none;">
-										<div class="jadore-areas-mobile-adv button-border-mobile">SHOP NOW</div>
-									</div>
-								</a>
+								<div class="button-section-mobile">
+									<Button />
+								</div>
 								<div class="button-section">
-									<div class="button-border">
-										<a href={amazonLink}>SHOP NOW</a>
-									</div>
+									<Button />
 								</div>
 							</div>
 						</div>
@@ -76,7 +79,7 @@ import {links, amazonLink} from "../data/settings"
 					<div class="main-footer">
 						<div class="text-center mt-3">
 							<ul class="home-footer-links">
-								<li>&copy; 2023 A Black Kat's Voice </li>
+								<li>&copy; <span id="copyright">2023</span> A Black Kat's Voice </li>
 							</ul>
 						</div>
 					</div>
@@ -85,6 +88,11 @@ import {links, amazonLink} from "../data/settings"
 		</div>
 	</main>
 </Layout>
+<script>
+	  document.querySelector("#copyright")!.textContent = new Date()
+    .getFullYear()
+    .toString();
+</script>
 
 <style>
 	/* main */
@@ -155,6 +163,16 @@ a {
     bottom: calc((-4vw + -4vh + -4%)/3);
 }
 
+#slideshow span.animate.up {
+    -webkit-animation-name: up;
+    animation-name: up;
+}
+
+#slideshow .slide span.animate.up, #slideshow .slide span.animate.up {
+    top: calc((-4vw + -4vh + -4%)/3);
+    bottom: calc((-4vw + -4vh + -4%)/3);
+}
+
 	/* ----------------- */
 	/* Main Content      */
 	/* ----------------- */
@@ -164,16 +182,16 @@ a {
 	}
 
 	@media (max-width: 780px) {
-		.main-bg-slider {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-		gap: 30px 0;
-}
+    .main-bg-slider {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+          gap: 30px 0;
+    }
 	}
 
 	.main-bg-slider {
-		min-height: calc(100vh - 2px);
+		min-height: 100vh;
 	}
 
 	/* div class="header-text" */
@@ -183,7 +201,6 @@ a {
     text-align: center;
     padding: 6px 0;
     color: #000;
-    margin-top: 2px;
     margin-bottom: 25px;
     min-height: 30px;
     max-height: max-content;
@@ -217,13 +234,21 @@ a {
 	.jlf-first-page-logo-block {
     margin-bottom: 0px;
     padding: 5px;
-}
 	}
+}
+
 
 /* img */
 .jlf-first-page-logo-block img {
     max-width: 100%;
     width: 250px;
+}
+
+
+@media (max-width: 600px) {
+	.jlf-first-page-logo-block img {
+    width: 160px !important;
+}
 }
 
 /* div class="d-flex flex-wrap justify-content-center mx-11 slider-block-1" */
@@ -259,7 +284,19 @@ a {
 /* Card              */
 /* ----------------- */
 /* div class="jadore-area-item" */
+@media (max-width: 400px) {
+	.jadore-area-item {
+    margin: 0 10px;
+    width: 100%;
+	}
+}
 
+@media (max-width: 430px) {
+	.jadore-area-item {
+    margin: 0;
+    width: unset !important;
+	}
+}
 /* a */
 
 
@@ -305,8 +342,17 @@ a {
 @media (max-width: 600px) {
 	.jadore-areas-divs {
     margin: 7px;
-    width: 192px;
+    width: 170px;
     min-height: 150px;
+}
+}
+
+
+@media (max-width: 430px) {
+	.first_page_updated_design .jadore-areas-divs {
+    margin: 7px;
+    width: 170px !important;
+    min-height: 150px !important;
 }
 }
 
@@ -402,40 +448,40 @@ a {
 
 /* img class="flower-1" */
 .white-page-banner .flower-1 {
-    height: 150px;
+    height: 120px;
     object-fit: contain;
     position: absolute;
-    left: 80px;
-		bottom: 30px;
+    left: 10px;
+		top: 50px;
 }
 
-@media (max-width: 900px) {
+@media (min-width: 501px) {
 	.white-page-banner .flower-1 {
-    object-fit: contain;
-    width: 150px;
+    height: 100px;
+    left: 40px;
+		top: 75px;
+}
+}
+
+@media (min-width: 600px) {
+	.white-page-banner .flower-1 {
+    height: 120px;
     left: 30px;
+		top: 40px;
 }
 }
 
-@media (max-width: 715px) {
+@media (min-width: 770px) {
 	.white-page-banner .flower-1 {
-    height: 77%;
-    min-height: unset;
-    object-fit: contain;
-    width: 150px;
-    left: 35px;
-    top: 35px;
+    left: 60px;
 }
 }
 
-@media (max-width: 500px) {
+@media (min-width: 920px) {
 	.white-page-banner .flower-1 {
-    height: 60%;
-    min-height: unset;
-    object-fit: contain;
-    left: -30px;
-    top: 38px;
-    z-index: 999;
+		height: 150px;
+		top: 25px;
+    left: 90px;
 }
 }
 
@@ -532,75 +578,36 @@ p {
 
 /* div class="jadore_area_subtitle_mobile button-section-mobile" */
 .button-section-mobile {
-    width: 100px;
-    margin: 0 auto;
-    height: 29px;
-    background-color: #fff;
-    padding: 5px;
-    border-radius: 1px;
-    border: 1px solid #979797;
-    box-shadow: 0px 0px 10px #a5a5a5;
+    margin: 5px auto 0;
+		display: block;
 }
 
-@media (max-width: 715px) {
+@media (min-width: 780px) {
 	.button-section-mobile {
-    display: block !important;
+		display: none;
 }
 }
 
-@media (max-width: 600px) {
-	.jadore_area_subtitle_mobile {
-    display: block !important;
-}
-}
-
-/* div class="jadore-areas-mobile-adv button-border-mobile" */
-
-.button-border-mobile {
-    color: #000 !important;
-    border: 1px solid #ccc;
-    position: relative;
-    top: -2px;
-    margin: 0 -3px !important;
-    border-radius: 1px;
-    padding-top: 2px;
-}
-
-.jadore-areas-mobile-adv {
-    margin: 10px 5px 0;
-    font-size: 13px;
-    line-height: 1.5;
-    color: #a70909;
-    text-align: center;
-}
 
 /* div class="button-section" */
 .white-page-banner-content .button-section {
-    position: absolute !important;
-    right: 5%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 140px;
-    padding: 6px;
-    height: 35px;
-    background-color: #ffffffa6;
-    border-radius: 1px;
-    border: 1px solid #979797;
-    box-shadow: 0px 0px 10px #a5a5a5;
+    position: absolute;
+		display: none;
+    right: -5px;
+    top: 0;
+    transform: translateY(-10%);
 }
 
-@media (max-width: 900px) {
+@media (min-width: 780px) {
 	.white-page-banner-content .button-section {
-    right: 0;
-}
+		display: block;
+	}
 }
 
-@media (max-width: 715px) {
+@media (min-width: 890px) {
 	.white-page-banner-content .button-section {
-    display: none;
-    position: static;
-    margin-top: 15px;
-}
+		right: 5%;
+	}
 }
 
 /* div class="button-border" */
@@ -654,7 +661,22 @@ p {
 /* ----------------- */
 /* Animations        */
 /* ----------------- */
-/* @keyframes down {
+@keyframes up {
+	0% {
+			-webkit-transform: translateY(calc((4vw + 4vh + 4%)/3)) rotate(0.01deg);
+			transform: translateY(calc((4vw + 4vh + 4%)/3)) rotate(0.01deg);
+			-ms-transform: translateY(4%);
+	}
+	100% {
+    -webkit-transform: translateY(calc((-4vw + -4vh + -4%)/3)) rotate(0.01deg);
+    transform: translateY(calc((-4vw + -4vh + -4%)/3)) rotate(0.01deg);
+    -ms-transform: translateY(-4%);
+	}
+
+
+}
+
+@keyframes down {
 	0% {
     -webkit-transform: translateY(calc((-4vw + -4vh + -4%)/3)) rotate(0.01deg);
     transform: translateY(calc((-4vw + -4vh + -4%)/3)) rotate(0.01deg);
@@ -666,6 +688,19 @@ p {
 			transform: translateY(calc((4vw + 4vh + 4%)/3)) rotate(0.01deg);
 			-ms-transform: translateY(4%);
 	}
-} */
-</style>
+}
 
+@keyframes in {
+	0% {
+		-webkit-transform: scale(1);
+			transform: scale(1);
+	}
+
+	100% {
+    -webkit-transform: scale(1.15);
+			transform: scale(1.15);
+	}
+}
+
+
+</style>
