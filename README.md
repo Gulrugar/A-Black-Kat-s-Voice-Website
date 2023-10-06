@@ -13,6 +13,4 @@ Key Points:
 3. Animations with GreenSock's GSAP Library
 4. Polished presentation on all screen sizes (mobile responsive)
 
-<div align="center">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/r4kLcqCRdao?si=a6qohyXen37i3su4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</div>
