@@ -1,6 +1,6 @@
 # A Black Kat's Voice Brand Website
 
-[Visit the live demo website =>](https://ablackkatsvoice.vercel.app "A Black Kat's Voice")
+[Visit the live website =>](https://ablackkatsvoice.vercel.app "A Black Kat's Voice")
 
 ## Description
 
@@ -13,4 +13,8 @@ Key Points:
 3. Animations with GreenSock's GSAP Library
 4. Polished presentation on all screen sizes (mobile responsive)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/r4kLcqCRdao?si=a6qohyXen37i3su4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<div align="center">
+  <img src="https://github.com/Gulrugar/A-Black-Kat-s-Voice-Website/assets/105955316/42c46c8b-0a03-4f99-bfb1-82e55e1e6a4f" style="width: 80%"/>
+</div>
+
+[Preview the website on YouTube =>](https://www.youtube.com/watch?v=r4kLcqCRdao&list=PLcnTcy5iq-1nT0fTixLSbOzyToWM6Q-Tm "To YouTube")
